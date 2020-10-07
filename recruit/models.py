@@ -1,5 +1,6 @@
 from django.db import models
 from datetime  import datetime
+# from account.models import Like
 
 class MainCategory(models.Model):
     name   = models.CharField(max_length=45)
@@ -10,14 +11,15 @@ class MainCategory(models.Model):
 class Category(models.Model):
     name            = models.CharField(max_length=45)
     main_category   = models.ForeignKey(MainCategory, on_delete=models.CASCADE)
-    category_image  = models.CharField(max_length=45)
+    category_image  = models.CharField(max_length=500,null=True)
 
     class Meta:
         db_table = 'categories'
 
 class SubCategory(models.Model):
-    name      = models.CharField(max_length=45)
-    category  = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name               = models.CharField(max_length=45)
+    category           = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategory_image  = models.CharField(max_length=500, null=True)
 
     class Meta:
         db_table = 'sub_categories'
@@ -45,7 +47,7 @@ class DetailLocation(models.Model):
 
 class Recruit(models.Model):
     title                  = models.CharField(max_length=45)
-    thumbnail_url          = models.CharField(max_length=45)
+    thumbnail_url          = models.CharField(max_length=500)
     company_name           = models.CharField(max_length=45)
     location               = models.ForeignKey(Location, on_delete=models.CASCADE)
     detail_location        = models.ForeignKey(DetailLocation, on_delete=models.CASCADE)
@@ -60,6 +62,8 @@ class Recruit(models.Model):
     map_url                = models.CharField(max_length=500)
     benefits               = models.TextField()
     response_rate          = models.IntegerField(null=True)
+    latitude               = models.FloatField(null=True)
+    longitude              = models.FloatField(null=True)
 
     class Meta:
         db_table = 'recruits'
@@ -70,4 +74,3 @@ class RecommendRecruit(models.Model):
 
     class Meta:
         db_table = 'recommend_recruit'
-
