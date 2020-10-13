@@ -64,7 +64,10 @@ class Recruit(models.Model):
     response_rate          = models.IntegerField(null=True)
     latitude               = models.FloatField(null=True)
     longitude              = models.FloatField(null=True)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 50eb482... Add : ListView, SalaryView, Fix : DetailView, SearchView
     class Meta:
         db_table = 'recruits'
 
